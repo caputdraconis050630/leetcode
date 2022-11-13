@@ -9,11 +9,15 @@ class Solution {
             return mat;
         }
 
-        // create reshaped matrix
-        final int[][] ret = new int[r][c];
-        for (int i = 0; i < n; i++) {
-            ret[i / c][i % c] = mat[i / mc][i % mc]; // see explanation above
-        }
-        return ret;
+         // create reshaped matrix
+         final int[][] ret = new int[r][c];
+         int k = 0; // number of cells filled in so far
+         for (int i = 0; i < mr; i++) {
+             for (int j = 0; j < mc; j++) {
+                 ret[k / c][k % c] = mat[i][j]; // see explanation above
+                 k++;
+             }
+         }
+         return ret;
     }
 }
