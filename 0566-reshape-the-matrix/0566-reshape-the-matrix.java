@@ -1,13 +1,19 @@
 class Solution {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
-        int n=mat[0].length;
-        if(r*c!=mat.length*n) {
+        final int mr = mat.length;
+        final int mc =  mat[0].length;
+        final int n =  mr * mc;
+
+        // check arguments
+        if (r * c != n) {
             return mat;
         }
-        int[][] ans = new int[r][c];
-        for(int i=0;i<r*c;i++) {
-            ans[i/c][i%c]=mat[i/n][i%n];
+
+        // create reshaped matrix
+        final int[][] ret = new int[r][c];
+        for (int i = 0; i < n; i++) {
+            ret[i / c][i % c] = mat[i / mc][i % mc]; // see explanation above
         }
-        return ans;
+        return ret;
     }
 }
