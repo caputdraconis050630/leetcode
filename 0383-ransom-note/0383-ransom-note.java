@@ -1,18 +1,16 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) return false;
         int[] cnt = new int[26];
         int ransomNoteLen = ransomNote.length();
         int magazineLen = magazine.length();
         
-        for (int i=0; i<magazineLen; i++) {
-            cnt[magazine.charAt(i) - 'a']++;
+        for (char c : magazine.toCharArray()) {
+            cnt[c - 'a']++;
         }
-        for (int i=0; i<ransomNoteLen; i++) {
-            int index = ransomNote.charAt(i) - 'a';
-            cnt[index]--;
-            if (cnt[index] < 0) {
-                return false;
-            }
+        for (char c : ransomNote.toCharArray()) {
+            if (cnt[c - 'a'] == 0) return false;
+            cnt[c - 'a']--;
         }
         return true;
     }
