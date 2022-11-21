@@ -14,18 +14,35 @@
  * }
  */
 class Solution {
-    List<Integer> sol;
-    
     public List<Integer> inorderTraversal(TreeNode root) {
-        sol = new ArrayList<Integer>();
-        inorder(root);
+        List<Integer> sol = new ArrayList<Integer>();
+        Stack<TreeNode> bag = new Stack<TreeNode>();
+        TreeNode cur = root;
+        
+        while (cur != null || !bag.isEmpty()) {
+            while (cur != null) {
+                bag.push(cur);
+                cur = cur.left;
+            }
+            cur = bag.pop();
+            sol.add(cur.val);
+            cur = cur.right;
+        }
         return sol;
     }
     
-    public void inorder(TreeNode node) {
-        if (node == null) return;
-        inorder(node.left);
-        sol.add(node.val);
-        inorder(node.right);
-    }
+//     List<Integer> sol;
+    
+//     public List<Integer> inorderTraversal(TreeNode root) {
+//         sol = new ArrayList<Integer>();
+//         inorder(root);
+//         return sol;
+//     }
+    
+//     public void inorder(TreeNode node) {
+//         if (node == null) return;
+//         inorder(node.left);
+//         sol.add(node.val);
+//         inorder(node.right);
+//     }
 }
