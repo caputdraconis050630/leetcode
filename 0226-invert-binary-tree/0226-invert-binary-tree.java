@@ -20,7 +20,7 @@ class Solution {
     }
     public TreeNode res(TreeNode root, TreeNode right, TreeNode left){
         if(right==null && left==null) return root;
-        root.right = left;  // Swapping left and right subtree of the root.
+        root.right = left;
         root.left = right;  
         if(right!=null)res(right, right.right, right.left);
         if(left!=null)res(left, left.right, left.left);
